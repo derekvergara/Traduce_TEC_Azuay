@@ -33,6 +33,8 @@ public class Usuario implements Serializable{
 	private String telefono;
 	private boolean carnet_discapacidad;
 	private int porcentaje_de_discapacidad;
+	private String correo;
+	private String nombre;
 	
 	//relaciones
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion 1 a M y definimos tipo cascada
@@ -50,6 +52,20 @@ public class Usuario implements Serializable{
 	
 		
 
+		
+		
+	public String getCorreo() {
+			return correo;
+		}
+		public void setCorreo(String correo) {
+			this.correo = correo;
+		}
+		public String getNombre() {
+			return nombre;
+		}
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
 	public List<Tipo_rol> getTipo_tol1() {
 			return tipo_tol1;
 		}

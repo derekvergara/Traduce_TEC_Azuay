@@ -38,8 +38,8 @@ public class UsuarioController {
 	
 	@PostMapping("/usuario")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Usuario create(@RequestBody Usuario canci){
-		return usuarioServ.save(canci);
+	public Usuario create(@RequestBody Usuario usu){
+		return usuarioServ.save(usu);
 	}
 	
 	@PutMapping("/usuario/{id}")
@@ -52,6 +52,8 @@ public class UsuarioController {
 		usu1.setEdad(usuario.getEdad());
 		usu1.setTelefono(usuario.getTelefono());
 		usu1.setPorcentaje_de_discapacidad(usuario.getPorcentaje_de_discapacidad());
+		usu1.setCorreo(usuario.getCorreo());
+		usu1.setNombre(usuario.getNombre());
 		
 		return usuarioServ.save(usu1);
 	}
