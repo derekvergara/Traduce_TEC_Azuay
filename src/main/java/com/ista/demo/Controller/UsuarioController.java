@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ista.demo.Entity.Usuario;
 import com.ista.demo.Service.UsuarioService;
 
-
+@CrossOrigin(origins = {"http:localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
@@ -54,6 +54,7 @@ public class UsuarioController {
 		usu1.setPorcentaje_de_discapacidad(usuario.getPorcentaje_de_discapacidad());
 		usu1.setCorreo(usuario.getCorreo());
 		usu1.setNombre(usuario.getNombre());
+		usu1.setNumero_carnet(usuario.getNumero_carnet());
 		
 		return usuarioServ.save(usu1);
 	}

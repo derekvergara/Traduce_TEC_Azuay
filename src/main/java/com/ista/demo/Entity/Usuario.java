@@ -35,6 +35,7 @@ public class Usuario implements Serializable{
 	private int porcentaje_de_discapacidad;
 	private String correo;
 	private String nombre;
+	private String numero_carnet;
 	
 	//relaciones
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion 1 a M y definimos tipo cascada
@@ -54,6 +55,12 @@ public class Usuario implements Serializable{
 
 		
 		
+	public String getNumero_carnet() {
+			return numero_carnet;
+		}
+		public void setNumero_carnet(String numero_carnet) {
+			this.numero_carnet = numero_carnet;
+		}
 	public String getCorreo() {
 			return correo;
 		}
