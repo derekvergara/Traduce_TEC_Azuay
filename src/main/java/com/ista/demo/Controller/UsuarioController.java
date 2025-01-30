@@ -1,9 +1,12 @@
 package com.ista.demo.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,6 +65,31 @@ public class UsuarioController {
 	@DeleteMapping("/usuario/{id}")
 	public void delete(@PathVariable Long id) {
 		usuarioServ.delete(id);
+	}
+	
+	// Endpoint para poder iniciar sesion.
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
+	    String username = credentials.get("usuario");
+	    String password = credentials.get("pasword");
+
+	    Usuario usuario = usuarioServ.findByUsuario(username);
+
+	    if (usuario != null && usuario.getPasword().equals(password)) {
+	        // Login exitoso: incluir el id y otros datos del usuario en la respuesta
+	        Map<String, Object> response = new HashMap<>();
+	        response.put("success", true);
+	        response.put("id", usuario.getId());
+	        response.put("nombre", usuario.getNombre());
+	        response.put("correo", usuario.getCorreo());
+	        response.put("telefono", usuario.getTelefono());
+	        // Puedes incluir más datos si es necesario
+
+	        return ResponseEntity.ok(response);
+	    } else {
+	        // Credenciales incorrectas
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("success", false));
+	    }
 	}
 
 }

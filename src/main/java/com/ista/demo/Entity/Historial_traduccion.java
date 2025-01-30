@@ -3,17 +3,21 @@ package com.ista.demo.Entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table (name="historial_traduccion", uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id"})})
+@Table (name="historial_traduccion")
 public class Historial_traduccion implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -27,6 +31,12 @@ public class Historial_traduccion implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha_traduccion;
+	
+	 // Relación con Usuario
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false) // Llave foránea hacia Usuario
+    @JsonBackReference
+    private Usuario usuario;
 	
 
 	public String getTexto() {
@@ -52,5 +62,23 @@ public class Historial_traduccion implements Serializable{
 	public void setFecha_traduccion(Date fecha_traduccion) {
 		this.fecha_traduccion = fecha_traduccion;
 	}
+
+	////////////////
+	public Long getId_historial_traduccion() {
+		return id_historial_traduccion;
+	}
+
+	public void setId_historial_traduccion(Long id_historial_traduccion) {
+		this.id_historial_traduccion = id_historial_traduccion;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 
 }

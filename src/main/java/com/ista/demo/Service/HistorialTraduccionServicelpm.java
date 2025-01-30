@@ -40,5 +40,10 @@ public class HistorialTraduccionServicelpm implements IHistorialTraduccionServic
 		historialDao.deleteById(id);
 		
 	}
+	
+	@Override
+    public List<Historial_traduccion> findByUsuarioId(Long userId) {
+        return historialDao.findByUsuarioId(userId);
+    }
 
 }
