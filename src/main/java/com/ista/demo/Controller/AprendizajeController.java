@@ -31,7 +31,7 @@ public class AprendizajeController {
 	}
 	
 	@GetMapping("/Aprendizaje/{id}")
-	public Aprendizaje show(@PathVariable Long id) {
+	public Aprendizaje show(@PathVariable("id") Long id) {
 		return AprendizajeServ.findById(id);
 	}
 	
@@ -43,19 +43,19 @@ public class AprendizajeController {
 	
 	@PutMapping("/Aprendizaje/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Aprendizaje update(@RequestBody Aprendizaje aprendizaje, @PathVariable Long id) {
+	public Aprendizaje update(@RequestBody Aprendizaje aprendizaje, @PathVariable("id") Long id) {
 		Aprendizaje apren1 = AprendizajeServ.findById(id);
 		apren1.setNombre_aprendizaje(aprendizaje.getNombre_aprendizaje());
 		apren1.setSignificado(aprendizaje.getSignificado());
 		apren1.setImagen(aprendizaje.getImagen());
-		apren1.setCategoria_relacion(aprendizaje.getCategoria_relacion());
-		apren1.setNivel_relacion(aprendizaje.getNivel_relacion());
+		apren1.setCategoria_id(aprendizaje.getCategoria_id());
+		apren1.setNivel_id(aprendizaje.getNivel_id());
 
 		return AprendizajeServ.save(apren1);
 	}
 	
 	@DeleteMapping("/Aprendizaje/{id}")
-	public void delete(@PathVariable Long id) {
+	public void delete(@PathVariable("id") Long id) {
 		AprendizajeServ.delete(id);
 	}
 

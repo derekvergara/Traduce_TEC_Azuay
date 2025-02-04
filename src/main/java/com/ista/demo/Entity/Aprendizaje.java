@@ -3,6 +3,8 @@ package com.ista.demo.Entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -27,15 +29,17 @@ public class Aprendizaje implements Serializable {
 	private String nombre_aprendizaje;
 	private String significado;
 	private String imagen;
-	
+    @JsonIgnore
+
 	//relaciones
 			@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion M a 1 y definimos tipo cascada
-			@JoinColumn(name="id_aprendizaje")//creamos la llave foranea
-			private List<Nivel> nivel_relacion; //para la clase historial
-			
+			@JoinColumn(name="nivel_id")//creamos la llave foranea
+			private Nivel nivel_id; //para la clase historial
+    @JsonIgnore
+
 			@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion m a 1 y definimos tipo cascada
-			@JoinColumn(name="id_aprendizaje")//creamos la llave foranea
-			private List<Categoria> categoria_relacion; //para la clase proceso
+			@JoinColumn(name="categoria_id")//creamos la llave foranea
+			private Categoria categoria_id; //para la clase proceso
 
 			public Long getId_aprendizaje() {
 				return id_aprendizaje;
@@ -69,20 +73,20 @@ public class Aprendizaje implements Serializable {
 				this.imagen = imagen;
 			}
 
-			public List<Nivel> getNivel_relacion() {
-				return nivel_relacion;
+			public Nivel getNivel_id() {
+				return nivel_id;
 			}
 
-			public void setNivel_relacion(List<Nivel> nivel_relacion) {
-				this.nivel_relacion = nivel_relacion;
+			public void setNivel_id(Nivel nivel_id) {
+				this.nivel_id = nivel_id;
 			}
 
-			public List<Categoria> getCategoria_relacion() {
-				return categoria_relacion;
+			public Categoria getCategoria_id() {
+				return categoria_id;
 			}
 
-			public void setCategoria_relacion(List<Categoria> categoria_relacion) {
-				this.categoria_relacion = categoria_relacion;
+			public void setCategoria_id(Categoria categoria_id) {
+				this.categoria_id = categoria_id;
 			}
 			
 	

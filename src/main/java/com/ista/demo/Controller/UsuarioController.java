@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ista.demo.Entity.Usuario;
 import com.ista.demo.Service.UsuarioService;
 
-@CrossOrigin(origins = {"http:localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
-	
+	 
 	@Autowired
 	private UsuarioService usuarioServ;
 	

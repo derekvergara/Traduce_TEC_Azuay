@@ -32,7 +32,7 @@ public class CategoriaController {
 	}
 	
 	@GetMapping("/Categoria/{id}")
-	public Categoria show(@PathVariable Long id) {
+	public Categoria show(@PathVariable("id") Long id) {
 		return CategoriaServ.findById(id);
 	}
 	
@@ -44,16 +44,17 @@ public class CategoriaController {
 	
 	@PutMapping("/Categoria/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Categoria update(@RequestBody Categoria categoria, @PathVariable Long id) {
+	public Categoria update(@RequestBody Categoria categoria, @PathVariable("id") Long id) {
 		Categoria cate1 = CategoriaServ.findById(id);
 		cate1.setNombre_categoria(categoria.getNombre_categoria());
 		cate1.setDescripcion(categoria.getDescripcion());
+		cate1.setAprendizajes(categoria.getAprendizajes());
 
 		return CategoriaServ.save(cate1);
 	}
 	
 	@DeleteMapping("/Categoria/{id}")
-	public void delete(@PathVariable Long id) {
+	public void delete(@PathVariable("id") Long id) {
 		CategoriaServ.delete(id);
 	}
 

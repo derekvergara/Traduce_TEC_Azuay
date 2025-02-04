@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ista.demo.Entity.Nivel;
 import com.ista.demo.Service.INivelService;
 
-
+@CrossOrigin(origins = {"http:localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class NivelController {
@@ -28,14 +29,15 @@ public class NivelController {
 	private INivelService NivelServ;
 	
 	@GetMapping("/Nivel")
-	public List<Nivel> indext(){
+	public List<Nivel> index(){
 		return NivelServ.findAll();
 	}
 	
 	@GetMapping("/Nivel/{id}")
-	public Nivel show(@PathVariable Long id) {
-		return NivelServ.findById(id);
+	public Nivel show(@PathVariable("id") Long id) {
+	    return NivelServ.findById(id);
 	}
+
 	
 	@PostMapping("/Nivel")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -45,16 +47,18 @@ public class NivelController {
 	
 	@PutMapping("/Nivel/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Nivel update(@RequestBody Nivel nivel, @PathVariable Long id) {
+	public Nivel update(@RequestBody Nivel nivel, @PathVariable("id") Long id) {
 		Nivel nivel1 = NivelServ.findById(id);
 		nivel1.setNombre_nivel(nivel.getNombre_nivel());
 		nivel1.setDescripcion(nivel.getDescripcion());
+		nivel1.setAprendizajes(nivel.getAprendizajes());
 		
 		return NivelServ.save(nivel1);
 	}
 	
 	@DeleteMapping("/Nivel/{id}")
-	public void delete(@PathVariable Long id) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable("id") Long id) {
 		NivelServ.delete(id);
 	}
 

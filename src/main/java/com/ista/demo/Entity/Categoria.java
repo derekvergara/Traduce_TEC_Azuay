@@ -3,6 +3,8 @@ package com.ista.demo.Entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,11 +28,14 @@ public class Categoria implements Serializable {
 
 	private String nombre_categoria;
 	private String descripcion;
-	
+
+    
+
 	//relaciones
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion 1 a m y definimos tipo cascada
-	@JoinColumn(name="id_categoria")//creamos la llave foranea
+	@JoinColumn(name="categoria_id")//creamos la llave foranea
 	private List<Aprendizaje> aprendizajes; //para la clase
+    
 
 	public Long getId_categoria() {
 		return id_categoria;
