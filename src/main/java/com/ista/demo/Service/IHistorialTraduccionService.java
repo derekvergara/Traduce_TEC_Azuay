@@ -15,5 +15,5 @@ public List<Historial_traduccion> findAll();
 	
 	public void delete(Long id);
 	
-	
+	List<Historial_traduccion> findByUsuarioId(Long userId); // Nuevo método
 }

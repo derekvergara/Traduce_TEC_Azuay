@@ -43,5 +43,10 @@ public class UsuarioServicelmp implements UsuarioService {
 		usuarioDao.deleteById(id);
 		
 	}
+	
+	@Override
+	public Usuario findByUsuario(String usuario) {
+	    return usuarioDao.findByUsuario(usuario);
+	}
 
 }

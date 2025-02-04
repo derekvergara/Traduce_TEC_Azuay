@@ -3,6 +3,8 @@ package com.ista.demo.Entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,11 +42,13 @@ public class Usuario implements Serializable{
 	//relaciones
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion 1 a M y definimos tipo cascada
 		@JoinColumn(name="usuario_id")//creamos la llave foranea
+		@JsonManagedReference // Relación gestionada desde el lado de Usuario
 		private List<Historial_traduccion> historial_traduccion1; //para la clase historial
 		
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion 1 a M y definimos tipo cascada
 		@JoinColumn(name="usuario_id")//creamos la llave foranea
-		private List<Proceso> proceso1; //para la clase proceso
+		@JsonManagedReference // Controla la serialización
+		private List<Progreso> proceso1; //para la clase proceso
 		
 
 		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)//relacion 1 a M y definimos tipo cascada
@@ -79,10 +83,16 @@ public class Usuario implements Serializable{
 		public void setTipo_tol1(List<Tipo_rol> tipo_tol1) {
 			this.tipo_tol1 = tipo_tol1;
 		}
-	public List<Proceso> getProceso1() {
+	public List<Progreso> getProceso1() {
 			return proceso1;
 		}
-		public void setProceso1(List<Proceso> proceso1) {
+		public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+		public void setProceso1(List<Progreso> proceso1) {
 			this.proceso1 = proceso1;
 		}
 	public List<Historial_traduccion> getHistorial_traduccion1() {
