@@ -125,7 +125,7 @@ public class Usuario implements Serializable{
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public boolean isCarnet_discapacidad() {
+	public boolean getCarnet_discapacidad() {
 		return carnet_discapacidad;
 	}
 	public void setCarnet_discapacidad(boolean carnet_discapacidad) {

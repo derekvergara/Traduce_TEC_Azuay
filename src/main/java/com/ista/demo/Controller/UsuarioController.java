@@ -51,7 +51,7 @@ public class UsuarioController {
 		Usuario usu1 = usuarioServ.findById(id);
 		usu1.setUsuario(usuario.getUsuario());
 		usu1.setPasword(usuario.getPasword());
-		usu1.setCarnet_discapacidad(usuario.isCarnet_discapacidad());
+		usu1.setCarnet_discapacidad(usuario.getCarnet_discapacidad());
 		usu1.setEdad(usuario.getEdad());
 		usu1.setTelefono(usuario.getTelefono());
 		usu1.setPorcentaje_de_discapacidad(usuario.getPorcentaje_de_discapacidad());
@@ -81,8 +81,12 @@ public class UsuarioController {
 	        response.put("success", true);
 	        response.put("id", usuario.getId());
 	        response.put("nombre", usuario.getNombre());
+	        response.put("edad", usuario.getEdad());
 	        response.put("correo", usuario.getCorreo());
 	        response.put("telefono", usuario.getTelefono());
+	        response.put("carnet_discapacidad", usuario.getCarnet_discapacidad());
+	        response.put("numero_carnet", usuario.getNumero_carnet());
+	        response.put("porcentaje_de_discapacidad", usuario.getPorcentaje_de_discapacidad());
 	        // Puedes incluir más datos si es necesario
 
 	        return ResponseEntity.ok(response);
