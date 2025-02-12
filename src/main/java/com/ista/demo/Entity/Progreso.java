@@ -25,7 +25,7 @@ public class Progreso implements Serializable {
     @JsonBackReference // Evita la serialización infinita
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "juego_id", nullable = false) // Relación con Juego
     private Juego juego;
 
