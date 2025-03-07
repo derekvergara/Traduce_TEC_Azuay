@@ -46,6 +46,7 @@ public class JuegoController {
 		Juego jue1 = juegoServ.findById(id);
 		jue1.setNombre_juego(jue.getNombre_juego());
 		jue1.setDescripcion_juego(jue.getDescripcion_juego());
+		jue1.setNiveles(jue.getNiveles());
 		
 		return juegoServ.save(jue1);
 	}

@@ -1,5 +1,6 @@
 package com.ista.demo.Service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ public class HistorialTraduccionServicelpm implements IHistorialTraduccionServic
 	@Override
     public List<Historial_traduccion> findByUsuarioId(Long userId) {
         return historialDao.findByUsuarioId(userId);
+    }
+    
+ // nuevo metodo.
+    @Override
+    public List<Historial_traduccion> findByUsuarioIdAndFechaBetween(Long userId, Date start, Date end) {
+        return historialDao.findByUsuarioIdAndFechaBetween(userId, start, end);
     }
 
 }

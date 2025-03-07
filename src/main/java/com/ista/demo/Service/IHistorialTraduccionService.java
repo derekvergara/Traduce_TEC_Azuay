@@ -1,5 +1,6 @@
 package com.ista.demo.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -15,5 +16,7 @@ public List<Historial_traduccion> findAll();
 	
 	public void delete(Long id);
 	
-	List<Historial_traduccion> findByUsuarioId(Long userId); // Nuevo método
+	List<Historial_traduccion> findByUsuarioId(Long userId); 
+	
+	List<Historial_traduccion> findByUsuarioIdAndFechaBetween(Long userId, Date start, Date end); // Nuevo método
 }
